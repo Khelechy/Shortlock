@@ -1,0 +1,68 @@
+﻿@{
+    Layout = null;
+}
+@model ShortlinkViewModel
+<!doctype html>
+<html>
+
+<head>
+    <title>Shortlock - Authenticate</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.7.4/mvp.css">
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Scada" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="background">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <main>
+                <header>
+                    <h1>Authenticate URL</h1>
+                    <p>
+                        <h3>Enter your URL Password below to navigate to the password URL.</h3>
+                    </p>
+                </header>
+                <section id="urlForm">
+
+                    <form enctype="application/x-www-form-urlencoded" asp-controller="Authenticate" asp-action="AuthenticateURL" style="background-color: white;">
+                        <p class="a" id="errMsgBox"></p>
+                        <label for="password" style="color:#591BC5;">
+                            URL Password
+                        </label>
+                        <br />
+                        <div>
+                            <span>
+                                <i class="material-icons" style="color:#591BC5;">lock</i>
+
+                            </span>
+                            <input class="a" type="password" asp-for="RawPassword" style="border-color:#591BC5;" placeholder="password" />
+                        </div>
+                        <button class="a" type="submit" style="background-color: #591BC5; border-color: #591BC5;">Decrypt</button>
+                    </form>
+                </section>
+            </main>
+        </div>
+
+    </div>
+
+    <script>
+        let data = window.location.hash;
+
+        let errorMsg = decodeURIComponent(data.substr(1));
+        console.log(errorMsg)
+        if (data) {
+            let section = document.getElementById('errMsgBox');
+            section.innerHTML = `<b><font color="red">${errorMsg}</font><b>`;
+        }
+
+
+    </script>
+</body>
+
+</html>

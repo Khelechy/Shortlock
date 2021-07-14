@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+
+}
+@model ShortlinkViewModel
+<!doctype html>
+<html>
+
+<head>
+    <title>Shortlock</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.7.4/mvp.css">
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Scada" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="background">
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <div class="cube"></div>
+            <main>
+                <header>
+                    <h1>Shorten &amp; Authenticate URLs on the go</h1>
+                    <p>
+                        <h3>Enter your URL below to retrieve the shortened version.</h3>
+                    </p>
+                </header>
+                <section id="urlForm">
+                    <form enctype="application/x-www-form-urlencoded" asp-controller="Home" asp-action="Shorten" style="background-color: white;">
+                        <label for="url" style="color:#591BC5;">
+                            URL
+                        </label>
+                        <br />
+                        <div>
+                            <span>
+                                <i class="material-icons" style="color:#591BC5;">link</i>
+
+                            </span>
+                            <span>
+                                <input class="a" type="url" asp-for="RawURL" placeholder="http://url.com" style="border-color:#591BC5;" required />
+                            </span>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="isLocked" id="isLocked" onclick="ShowHideDiv(this)" />
+                            <label for="isLocked" style="color:#591BC5;">
+                                lock
+                            </label>
+                            <br />
+                            <div id="passbox" style="display: none;">
+                                <div>
+                                    <span>
+                                        <i class="material-icons" style="color:#591BC5;">lock</i>
+
+                                    </span>
+                                    <span>
+                                        <input class="a" type="password" asp-for="RawPassword" placeholder="Password" style="border-color:#591BC5;" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="a" type="submit" style="background-color: #591BC5; border-color: #591BC5;">Shorten</button>
+                        <!-- A a place to put our resulting short link -->
+                        <p class="a" id="urlResult"></p>
+                    </form>
+                </section>
+            </main>
+        </div>
+
+    </div>
+    <script>
+        let data = window.location.hash;
+        if (data) {
+
+            let url = new URL(data.substr(1));
+
+            if (url.protocol === window.location.protocol
+                && url.host === window.location.host) {
+                let section = document.getElementById('urlResult');
+                section.innerHTML = `<a id="link" href="${url}">${url}</a>`;
+            }
+        }
+
+        function ShowHideDiv(chkPassport) {
+            var passbox = document.getElementById("passbox");
+            passbox.style.display = isLocked.checked ? "block" : "none";
+        }
+
+    </script>
+</body>
+
+</html>
