@@ -8,7 +8,7 @@
 
 <head>
     <title>Shortlock</title>
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css@1.7.4/mvp.css">
+    <link rel="stylesheet" href="~/css/mvp.css">
     <link rel="stylesheet" href="~/css/site.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia|Scada" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -57,7 +57,7 @@
 
                                     </span>
                                     <span>
-                                        <input class="a" type="password" asp-for="RawPassword" placeholder="Password" style="border-color:#591BC5;" />
+                                        <input class="a" type="password" asp-for="RawPassword" placeholder="Password" id="passwordInput" style="border-color:#591BC5;" />
                                     </span>
                                 </div>
                             </div>
@@ -87,6 +87,7 @@
         function ShowHideDiv(chkPassport) {
             var passbox = document.getElementById("passbox");
             passbox.style.display = isLocked.checked ? "block" : "none";
+            document.getElementById("passwordInput").required = true;
         }
 
     </script>
