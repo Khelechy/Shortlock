@@ -53,10 +53,6 @@ namespace Shortlock.Controllers
 		public Task AuthenticateURL(ShortlinkViewModel model)
 		{
 			var storedPassword = HttpContext.Session.GetString("LinkPassword");
-			if (storedPassword == null)
-			{
-				HttpContext.Response.Redirect($"/Authenticate/#Unable to get linkedPassword!");
-			}
 			var result = _shortlockService.AuthenticateURL(model.RawPassword, storedPassword);
 			if (result)
 			{

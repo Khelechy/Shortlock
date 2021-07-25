@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
-<body class="container>
+<body>
     <div class="container-fluid">
         <div class="background">
             <div class="cube"></div>
@@ -29,7 +29,7 @@
                         <h3>Enter your URL below to retrieve the shortened version.</h3>
                     </p>
                 </header>
-                <section class="formCard" id="urlForm">
+                <section id="urlForm">
                     <form enctype="application/x-www-form-urlencoded" asp-controller="Home" asp-action="Shorten" style="background-color: white;">
                         <label for="url" style="color:#591BC5;">
                             URL
@@ -40,7 +40,9 @@
                                 <i class="material-icons" style="color:#591BC5;">link</i>
 
                             </span>
-                            <input class="form-control" type="url" asp-for="RawURL" placeholder="http://url.com" style="border-color:#591BC5;" required />
+                            <span>
+                                <input class="a" type="url" asp-for="RawURL" placeholder="http://url.com" style="border-color:#591BC5;" required />
+                            </span>
                         </div>
                         <div>
                             <input type="checkbox" name="isLocked" id="isLocked" onclick="ShowHideDiv(this)" />
