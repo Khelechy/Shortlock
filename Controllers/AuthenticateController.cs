@@ -22,7 +22,16 @@ namespace Shortlock.Controllers
 		}
 		public IActionResult Index()
 		{
-			return View();
+			var storedPassword = HttpContext.Session.GetString("LinkPassword");
+            if (!string.IsNullOrEmpty(storedPassword))
+            {
+				return View();
+            }
+            else
+            {
+				return RedirectToAction("Index", "Home");
+            }
+			
 		}
 
 		[HttpGet]

@@ -80,7 +80,7 @@
             if (url.protocol === window.location.protocol
                 && url.host === window.location.host) {
                 let section = document.getElementById('urlResult');
-                section.innerHTML = `<a id="link" href="${url}">${url}</a>`;
+                section.innerHTML = `<a id="link" href="${url}" target=_blank>${url}</a>`;
             }
         }
 
