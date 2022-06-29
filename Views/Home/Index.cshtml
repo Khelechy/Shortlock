@@ -77,11 +77,8 @@
 
             let url = new URL(data.substr(1));
 
-            if (url.protocol === window.location.protocol
-                && url.host === window.location.host) {
-                let section = document.getElementById('urlResult');
+            let section = document.getElementById('urlResult');
                 section.innerHTML = `<a id="link" href="${url}" target=_blank>${url}</a>`;
-            }
         }
 
         function ShowHideDiv(chkPassport) {
